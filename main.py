@@ -58,3 +58,8 @@ print(list(r for r in grafo2.predecessors(6)))
 
 #Il metodo restituisce il grado del nodo, cioè quanti archi sono collegati a quel nodo.
 grafo.degree[nodo]
+
+# Modifica del peso di un arco esistente
+grafo['A']['B']['weight'] = 10
+
+
