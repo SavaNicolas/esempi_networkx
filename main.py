@@ -62,4 +62,7 @@ grafo.degree[nodo]
 # Modifica del peso di un arco esistente
 grafo['A']['B']['weight'] = 10
 
+#archi incidenti al nodo
+list(self.grafo.edges(n, data=True)) [[(u,v,{weight:12})]]
+
 
