@@ -67,4 +67,9 @@ list(self.grafo.edges(n, data=True)) [[(u,v,{weight:12})]]
 
 #aggiungi metodi guardando ogni tema d'esame
 
+#cammino più breve usando 
+def getPath(self,v0,v1):
+    path=nx.dijkstra_path(self._graph,v0,v1, weight=None)
+    return path
+
 
