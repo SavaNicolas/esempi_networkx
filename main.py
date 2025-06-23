@@ -40,7 +40,7 @@ grafo2.add_edges_from(ebunch)
 #quali nodi e archi ho nel grafo?
 print(grafo2.nodes())
 print(grafo2.edges()) #[(u,v),(u2,v2)])...]
-grafo2.edges(data=True) #[(u,v,{"weight":3,...}
+list(grafo2.edges(data=True)) #[(u,v,{"weight":3,...}
 
 
 
