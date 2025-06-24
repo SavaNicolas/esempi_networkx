@@ -67,9 +67,69 @@ list(self.grafo.edges(n, data=True)) [[(u,v,{weight:12})]]
 
 #aggiungi metodi guardando ogni tema d'esame
 
-#cammino più breve usando 
+#cammino più breve usando dijkstra
 def getPath(self,v0,v1):
     path=nx.dijkstra_path(self._graph,v0,v1, weight=None)
     return path
+
+#numero componenti connesse ad un grafo
+def getConnesse(self):
+    return len(list(nx.connected_components(self._grafo)))
+
+def getInfoConnessa(self,idInput):
+        """
+        restituisce la dimensione della componente connessa(a quanti nodi è collegata: cioè a quanti nodi può arrivare(da una fermata, quante fermate della metro posso raggiungere?)
+        deepfirst e breath first
+        """
+        if id not in self.idMapNodes:
+            return None
+            
+        source= self._idMapObjects[idInput]
+        #modo 1: conto i successori
+        successori= nx.dfs_successors(self._grafo, source).values() #restituisce un dizionario chiave: oggetto, valore: lista di oggetti successori
+        res=[]
+        for s in successori:
+            res.extend(s)
+        print("modo 1:", len(res)+1)
+
+        # modo 2: conto i predecessori
+        predecessori = nx.dfs_predecessors(self._grafo,source)  # restituisce un dizionario chiave: oggetto, valore: il predecessore
+        print("modo 1:", len(predecessori.values())+1)
+
+        #modo3:dfstree, e conto i nodi dell'albero di visita
+        dfsTree= nx.dfs_tree(self._grafo, source).values() #e poi faccio len
+
+        #modo 4:medodi connectivity
+        conn= nx.node_connected_components(self._graph,source)
+
+        return len(conn)
+
+#visito grafo
+def getBFSNodesFromTree(self,source):
+   #nodi raggiungibili da source
+    tree=nx.bfs_tree(self._grafo,source) #ritorna un albero orientato
+    archi=list(tree.edges())
+    nodi=list(tree.nodes())
+    return nodi[1:] #perchè non ci serve il nodo source
+    #man mano mi allontano dal nodo source
+
+def getBFSNodesFromEdges(self,source):
+    #trovo i nodi dagli archi
+    archi=nx.bfs_edges(self._grafo,source) #lista di tuple(partenza,arrivo)
+    res=[]
+    for u,v in archi:
+        res.append(v) #solo i nodi di arrivo
+    return res
+
+def getDFSNodesFromTree(self,source):
+    tree=nx.dfs_tree(self._grafo,source)
+    archi=list(tree.edges())
+    nodi=list(tree.nodes())
+    return nodi[1:]
+    #ordine diverso da bfs perchè va sempre con l'adiacente
+
+#lista di archi di un grafo
+archi= list(self._grafo.edges(data=True))
+
 
 
