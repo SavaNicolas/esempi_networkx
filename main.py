@@ -1,17 +1,4 @@
-import math
-from dataclasses import dataclass
 
-import networkx as nx
-
-@dataclass
-class Voto:
-    punti: int
-    nome:str
-
-    def __hash__(self):
-        return hash((self.punti, self.nome))
-    def __eq__(self, other):
-        return self.nome == other.nome
 
 
 #ci sono dei grafi notevoli
@@ -42,9 +29,6 @@ print(grafo2.nodes())
 print(grafo2.edges()) #[(u,v),(u2,v2)])...]
 list(grafo2.edges(data=True)) #[(u,v,{"weight":3,...}
 
-
-
-
 #ottenere attributi di un arco
 print(grafo.get_edge_data("Due",1))
 
@@ -63,7 +47,7 @@ grafo.degree[nodo]
 grafo['A']['B']['weight'] = 10
 
 #archi incidenti al nodo
-list(self.grafo.edges(n, data=True)) [[(u,v,{weight:12})]]
+list(self.grafo.edges(n, data=True)) #[[(u,v,{weight:12})]]
 
 #aggiungi metodi guardando ogni tema d'esame
 
